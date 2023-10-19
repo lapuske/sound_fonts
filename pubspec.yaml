@@ -1,0 +1,17 @@
+name: sound_fonts
+description: Generates `Fonts` class to encapsulate all the fonts your Flutter application uses with the easy and understandable namings.
+version: 0.1.0-dev
+homepage: https://github.com/lapuske/sound_fonts
+
+environment:
+  sdk: '>=3.1.3 <4.0.0'
+
+dependencies:
+  analyzer: ">=5.0.0 <7.0.0"
+  build: ^2.4.0
+  build_runner: ^2.4.4
+  source_gen: ^1.3.2
+
+dev_dependencies:
+  lints: ^2.0.0
+  test: ^1.21.0
