@@ -1,6 +1,6 @@
-## 0.1.1 ~ WIP
+## 0.1.1
 
-### Added:
+### Added
 
 - `schema` getter generation.
 

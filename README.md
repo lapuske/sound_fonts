@@ -15,7 +15,7 @@ Simply add the package to your `pubspec.yaml`:
 
 ```yaml
 dependencies:
-  sound_fonts: ^0.1.0
+  sound_fonts: ^0.1.1
 ```
 
 or from GitHub directly:
