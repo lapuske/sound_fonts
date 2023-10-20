@@ -92,9 +92,17 @@ class FontsGenerator extends GeneratorForAnnotation<SoundFonts> {
     // Styles getter.
     if (styles) {
       buffer.writeln('');
-      buffer.writeln('/// Returns the [TextStyle]s generated.');
+      buffer.writeln('/// Returns the [List] of [TextStyle]s generated.');
       buffer.writeln(
         'List<TextStyle> get styles => [${schema.keys.map((e) => '...$e.styles').join(', ')}];',
+      );
+
+      buffer.writeln('');
+      buffer.writeln('/// Returns the [Map] of [TextStyle]s generated.');
+      buffer.writeln('///');
+      buffer.writeln('/// Represents the [SoundFonts.schema].');
+      buffer.writeln(
+        'Map<String, Map<String, Map<String, TextStyle>>> get schema => {${schema.keys.map((e) => '\'$e\': $e.schema').join(', ')}};',
       );
     }
 
@@ -178,9 +186,15 @@ class FontsGenerator extends GeneratorForAnnotation<SoundFonts> {
       // Styles getter.
       if (styles) {
         buffer.writeln('');
-        buffer.writeln('/// Returns the [TextStyle]s generated.');
+        buffer.writeln('/// Returns the [List] of [TextStyle]s generated.');
         buffer.writeln(
           'List<TextStyle> get styles => [${size.value.keys.map((e) => '...$e.styles').join(', ')}];',
+        );
+
+        buffer.writeln('');
+        buffer.writeln('/// Returns the [Map] of [TextStyle]s generated.');
+        buffer.writeln(
+          'Map<String, Map<String, TextStyle>> get schema => {${size.value.keys.map((e) => '\'$e\': $e.schema').join(', ')}};',
         );
       }
 
@@ -247,9 +261,20 @@ class FontsGenerator extends GeneratorForAnnotation<SoundFonts> {
         // Styles getter.
         if (styles) {
           buffer.writeln('');
-          buffer.writeln('/// Returns the [TextStyle]s defined in this class.');
-          buffer
-              .writeln('List<TextStyle> get styles => [${colors.join(', ')}];');
+          buffer.writeln(
+            '/// Returns the [List] of [TextStyle]s defined in this class.',
+          );
+          buffer.writeln(
+            'List<TextStyle> get styles => [${colors.join(', ')}];',
+          );
+
+          buffer.writeln('');
+          buffer.writeln(
+            '/// Returns the [Map] of [TextStyle]s defined in this class.',
+          );
+          buffer.writeln(
+            'Map<String, TextStyle> get schema => {${colors.map((e) => '\'$e\': $e').join(', ')}};',
+          );
         }
 
         // Lerp.

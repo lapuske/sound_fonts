@@ -45,8 +45,14 @@ class Fonts {
   /// Returns the sizes generated.
   List<dynamic> get sizes => [largest, large];
 
-  /// Returns the [TextStyle]s generated.
+  /// Returns the [List] of [TextStyle]s generated.
   List<TextStyle> get styles => [...largest.styles, ...large.styles];
+
+  /// Returns the [Map] of [TextStyle]s generated.
+  ///
+  /// Represents the [SoundFonts.schema].
+  Map<String, Map<String, Map<String, TextStyle>>> get schema =>
+      {'largest': largest.schema, 'large': large.schema};
 
   /// Linearly interpolates the provided objects based on the given [t] value.
   static Fonts lerp(Fonts a, Fonts? b, double t) {
@@ -86,8 +92,12 @@ class Largest {
   /// Returns the weights generated.
   List<dynamic> get weights => [bold, regular];
 
-  /// Returns the [TextStyle]s generated.
+  /// Returns the [List] of [TextStyle]s generated.
   List<TextStyle> get styles => [...bold.styles, ...regular.styles];
+
+  /// Returns the [Map] of [TextStyle]s generated.
+  Map<String, Map<String, TextStyle>> get schema =>
+      {'bold': bold.schema, 'regular': regular.schema};
 
   /// Linearly interpolates the provided objects based on the given [t] value.
   static Largest lerp(Largest a, Largest? b, double t) {
@@ -114,8 +124,12 @@ class LargestBold {
   final TextStyle onBackground;
   final TextStyle primary;
 
-  /// Returns the [TextStyle]s defined in this class.
+  /// Returns the [List] of [TextStyle]s defined in this class.
   List<TextStyle> get styles => [onBackground, primary];
+
+  /// Returns the [Map] of [TextStyle]s defined in this class.
+  Map<String, TextStyle> get schema =>
+      {'onBackground': onBackground, 'primary': primary};
 
   /// Linearly interpolates the provided objects based on the given [t] value.
   static LargestBold lerp(LargestBold a, LargestBold? b, double t) {
@@ -142,8 +156,12 @@ class LargestRegular {
   final TextStyle onBackground;
   final TextStyle primary;
 
-  /// Returns the [TextStyle]s defined in this class.
+  /// Returns the [List] of [TextStyle]s defined in this class.
   List<TextStyle> get styles => [onBackground, primary];
+
+  /// Returns the [Map] of [TextStyle]s defined in this class.
+  Map<String, TextStyle> get schema =>
+      {'onBackground': onBackground, 'primary': primary};
 
   /// Linearly interpolates the provided objects based on the given [t] value.
   static LargestRegular lerp(LargestRegular a, LargestRegular? b, double t) {
@@ -186,8 +204,12 @@ class Large {
   /// Returns the weights generated.
   List<dynamic> get weights => [bold, regular];
 
-  /// Returns the [TextStyle]s generated.
+  /// Returns the [List] of [TextStyle]s generated.
   List<TextStyle> get styles => [...bold.styles, ...regular.styles];
+
+  /// Returns the [Map] of [TextStyle]s generated.
+  Map<String, Map<String, TextStyle>> get schema =>
+      {'bold': bold.schema, 'regular': regular.schema};
 
   /// Linearly interpolates the provided objects based on the given [t] value.
   static Large lerp(Large a, Large? b, double t) {
@@ -218,8 +240,15 @@ class LargeBold {
   final TextStyle primary;
   final TextStyle secondary;
 
-  /// Returns the [TextStyle]s defined in this class.
+  /// Returns the [List] of [TextStyle]s defined in this class.
   List<TextStyle> get styles => [onBackground, primary, secondary];
+
+  /// Returns the [Map] of [TextStyle]s defined in this class.
+  Map<String, TextStyle> get schema => {
+        'onBackground': onBackground,
+        'primary': primary,
+        'secondary': secondary
+      };
 
   /// Linearly interpolates the provided objects based on the given [t] value.
   static LargeBold lerp(LargeBold a, LargeBold? b, double t) {
@@ -247,8 +276,12 @@ class LargeRegular {
   final TextStyle onBackground;
   final TextStyle onPrimary;
 
-  /// Returns the [TextStyle]s defined in this class.
+  /// Returns the [List] of [TextStyle]s defined in this class.
   List<TextStyle> get styles => [onBackground, onPrimary];
+
+  /// Returns the [Map] of [TextStyle]s defined in this class.
+  Map<String, TextStyle> get schema =>
+      {'onBackground': onBackground, 'onPrimary': onPrimary};
 
   /// Linearly interpolates the provided objects based on the given [t] value.
   static LargeRegular lerp(LargeRegular a, LargeRegular? b, double t) {
