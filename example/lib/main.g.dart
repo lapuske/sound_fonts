@@ -36,6 +36,12 @@ class Fonts {
 
   final Largest largest;
   final Large large;
+
+  /// Returns the sizes generated.
+  List<dynamic> get sizes => [largest, large];
+
+  /// Returns the [TextStyle]s generated.
+  List<TextStyle> get styles => [...largest.styles, ...large.styles];
 }
 
 class Largest {
@@ -58,6 +64,12 @@ class Largest {
 
   final LargestBold bold;
   final LargestRegular regular;
+
+  /// Returns the weights generated.
+  List<dynamic> get weights => [bold, regular];
+
+  /// Returns the [TextStyle]s generated.
+  List<TextStyle> get styles => [...bold.styles, ...regular.styles];
 }
 
 class LargestBold {
@@ -70,6 +82,9 @@ class LargestBold {
 
   final TextStyle onBackground;
   final TextStyle primary;
+
+  /// Returns the [TextStyle]s defined in this class.
+  List<TextStyle> get styles => [onBackground, primary];
 }
 
 class LargestRegular {
@@ -82,6 +97,9 @@ class LargestRegular {
 
   final TextStyle onBackground;
   final TextStyle primary;
+
+  /// Returns the [TextStyle]s defined in this class.
+  List<TextStyle> get styles => [onBackground, primary];
 }
 
 class Large {
@@ -107,6 +125,12 @@ class Large {
 
   final LargeBold bold;
   final LargeRegular regular;
+
+  /// Returns the weights generated.
+  List<dynamic> get weights => [bold, regular];
+
+  /// Returns the [TextStyle]s generated.
+  List<TextStyle> get styles => [...bold.styles, ...regular.styles];
 }
 
 class LargeBold {
@@ -122,6 +146,9 @@ class LargeBold {
   final TextStyle onBackground;
   final TextStyle primary;
   final TextStyle secondary;
+
+  /// Returns the [TextStyle]s defined in this class.
+  List<TextStyle> get styles => [onBackground, primary, secondary];
 }
 
 class LargeRegular {
@@ -134,4 +161,7 @@ class LargeRegular {
 
   final TextStyle onBackground;
   final TextStyle onPrimary;
+
+  /// Returns the [TextStyle]s defined in this class.
+  List<TextStyle> get styles => [onBackground, onPrimary];
 }

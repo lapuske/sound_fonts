@@ -1,6 +1,10 @@
 /// Annotation to generate `Fonts` class around.
 class SoundFonts {
-  const SoundFonts(this.schema, {this.prefix});
+  const SoundFonts(
+    this.schema, {
+    this.prefix,
+    this.stylesGetter = true,
+  });
 
   /// Schema to generate `Fonts` structure from.
   ///
@@ -20,4 +24,8 @@ class SoundFonts {
 
   /// Prefix to apply to the classes being generated.
   final String? prefix;
+
+  /// Indicates, whether the generated classes should contain the
+  /// `List<TextStyle> get styles` returning the [TextStyle]s used.
+  final bool stylesGetter;
 }

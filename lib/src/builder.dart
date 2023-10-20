@@ -16,6 +16,7 @@ class FontsGenerator extends GeneratorForAnnotation<SoundFonts> {
     BuildStep buildStep,
   ) {
     final String prefix = annotation.peek('prefix')?.stringValue ?? '';
+    final bool styles = annotation.peek('stylesGetter')?.boolValue ?? false;
     final Map<String, Map<String, List<String>>> schema = {};
 
     final raw = annotation.read('schema').mapValue;
@@ -71,6 +72,21 @@ class FontsGenerator extends GeneratorForAnnotation<SoundFonts> {
     for (var size in schema.entries) {
       buffer.writeln('final $prefix${size.key.capitalize} ${size.key};');
     }
+
+    buffer.writeln('');
+    buffer.writeln('/// Returns the sizes generated.');
+    buffer.writeln(
+      'List<dynamic> get sizes => [${schema.keys.join(', ')}];',
+    );
+
+    if (styles) {
+      buffer.writeln('');
+      buffer.writeln('/// Returns the [TextStyle]s generated.');
+      buffer.writeln(
+        'List<TextStyle> get styles => [${schema.keys.map((e) => '...$e.styles').join(', ')}];',
+      );
+    }
+
     buffer.writeln('}');
 
     buffer.writeln('');
@@ -115,6 +131,21 @@ class FontsGenerator extends GeneratorForAnnotation<SoundFonts> {
           'final $prefix${size.key.capitalize}${weight.key.capitalize} ${weight.key};',
         );
       }
+
+      buffer.writeln('');
+      buffer.writeln('/// Returns the weights generated.');
+      buffer.writeln(
+        'List<dynamic> get weights => [${size.value.keys.join(', ')}];',
+      );
+
+      if (styles) {
+        buffer.writeln('');
+        buffer.writeln('/// Returns the [TextStyle]s generated.');
+        buffer.writeln(
+          'List<TextStyle> get styles => [${size.value.keys.map((e) => '...$e.styles').join(', ')}];',
+        );
+      }
+
       buffer.writeln('}');
       buffer.writeln();
 
@@ -149,6 +180,13 @@ class FontsGenerator extends GeneratorForAnnotation<SoundFonts> {
         // Fields.
         for (var color in colors) {
           buffer.writeln('final TextStyle $color;');
+        }
+
+        if (styles) {
+          buffer.writeln('');
+          buffer.writeln('/// Returns the [TextStyle]s defined in this class.');
+          buffer
+              .writeln('List<TextStyle> get styles => [${colors.join(', ')}];');
         }
 
         buffer.writeln('}');
