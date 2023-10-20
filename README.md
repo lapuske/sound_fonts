@@ -53,7 +53,8 @@ part 'main.g.dart';
 class AnnotatedFonts {}
 ```
 
-This generates a generated file with the following class:
+This generates a file with the following class (`getter`s and `lerp` omitted):
+
 ```dart
 class Fonts {
   Fonts({
