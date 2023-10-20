@@ -34,6 +34,11 @@ class Fonts {
           onPrimary: onPrimary,
         );
 
+  Fonts._({
+    required this.largest,
+    required this.large,
+  });
+
   final Largest largest;
   final Large large;
 
@@ -42,6 +47,14 @@ class Fonts {
 
   /// Returns the [TextStyle]s generated.
   List<TextStyle> get styles => [...largest.styles, ...large.styles];
+
+  /// Linearly interpolates the provided objects based on the given [t] value.
+  static Fonts lerp(Fonts a, Fonts? b, double t) {
+    return Fonts._(
+      largest: Largest.lerp(a.largest, b?.largest, t),
+      large: Large.lerp(a.large, b?.large, t),
+    );
+  }
 }
 
 class Largest {
@@ -62,6 +75,11 @@ class Largest {
           primary: primary,
         );
 
+  Largest._({
+    required this.bold,
+    required this.regular,
+  });
+
   final LargestBold bold;
   final LargestRegular regular;
 
@@ -70,6 +88,14 @@ class Largest {
 
   /// Returns the [TextStyle]s generated.
   List<TextStyle> get styles => [...bold.styles, ...regular.styles];
+
+  /// Linearly interpolates the provided objects based on the given [t] value.
+  static Largest lerp(Largest a, Largest? b, double t) {
+    return Largest._(
+      bold: LargestBold.lerp(a.bold, b?.bold, t),
+      regular: LargestRegular.lerp(a.regular, b?.regular, t),
+    );
+  }
 }
 
 class LargestBold {
@@ -80,11 +106,24 @@ class LargestBold {
   })  : onBackground = style.copyWith(color: onBackground),
         primary = style.copyWith(color: primary);
 
+  LargestBold._({
+    required this.onBackground,
+    required this.primary,
+  });
+
   final TextStyle onBackground;
   final TextStyle primary;
 
   /// Returns the [TextStyle]s defined in this class.
   List<TextStyle> get styles => [onBackground, primary];
+
+  /// Linearly interpolates the provided objects based on the given [t] value.
+  static LargestBold lerp(LargestBold a, LargestBold? b, double t) {
+    return LargestBold._(
+      onBackground: TextStyle.lerp(a.onBackground, b?.onBackground, t)!,
+      primary: TextStyle.lerp(a.primary, b?.primary, t)!,
+    );
+  }
 }
 
 class LargestRegular {
@@ -95,11 +134,24 @@ class LargestRegular {
   })  : onBackground = style.copyWith(color: onBackground),
         primary = style.copyWith(color: primary);
 
+  LargestRegular._({
+    required this.onBackground,
+    required this.primary,
+  });
+
   final TextStyle onBackground;
   final TextStyle primary;
 
   /// Returns the [TextStyle]s defined in this class.
   List<TextStyle> get styles => [onBackground, primary];
+
+  /// Linearly interpolates the provided objects based on the given [t] value.
+  static LargestRegular lerp(LargestRegular a, LargestRegular? b, double t) {
+    return LargestRegular._(
+      onBackground: TextStyle.lerp(a.onBackground, b?.onBackground, t)!,
+      primary: TextStyle.lerp(a.primary, b?.primary, t)!,
+    );
+  }
 }
 
 class Large {
@@ -123,6 +175,11 @@ class Large {
           onPrimary: onPrimary,
         );
 
+  Large._({
+    required this.bold,
+    required this.regular,
+  });
+
   final LargeBold bold;
   final LargeRegular regular;
 
@@ -131,6 +188,14 @@ class Large {
 
   /// Returns the [TextStyle]s generated.
   List<TextStyle> get styles => [...bold.styles, ...regular.styles];
+
+  /// Linearly interpolates the provided objects based on the given [t] value.
+  static Large lerp(Large a, Large? b, double t) {
+    return Large._(
+      bold: LargeBold.lerp(a.bold, b?.bold, t),
+      regular: LargeRegular.lerp(a.regular, b?.regular, t),
+    );
+  }
 }
 
 class LargeBold {
@@ -143,12 +208,27 @@ class LargeBold {
         primary = style.copyWith(color: primary),
         secondary = style.copyWith(color: secondary);
 
+  LargeBold._({
+    required this.onBackground,
+    required this.primary,
+    required this.secondary,
+  });
+
   final TextStyle onBackground;
   final TextStyle primary;
   final TextStyle secondary;
 
   /// Returns the [TextStyle]s defined in this class.
   List<TextStyle> get styles => [onBackground, primary, secondary];
+
+  /// Linearly interpolates the provided objects based on the given [t] value.
+  static LargeBold lerp(LargeBold a, LargeBold? b, double t) {
+    return LargeBold._(
+      onBackground: TextStyle.lerp(a.onBackground, b?.onBackground, t)!,
+      primary: TextStyle.lerp(a.primary, b?.primary, t)!,
+      secondary: TextStyle.lerp(a.secondary, b?.secondary, t)!,
+    );
+  }
 }
 
 class LargeRegular {
@@ -159,9 +239,22 @@ class LargeRegular {
   })  : onBackground = style.copyWith(color: onBackground),
         onPrimary = style.copyWith(color: onPrimary);
 
+  LargeRegular._({
+    required this.onBackground,
+    required this.onPrimary,
+  });
+
   final TextStyle onBackground;
   final TextStyle onPrimary;
 
   /// Returns the [TextStyle]s defined in this class.
   List<TextStyle> get styles => [onBackground, onPrimary];
+
+  /// Linearly interpolates the provided objects based on the given [t] value.
+  static LargeRegular lerp(LargeRegular a, LargeRegular? b, double t) {
+    return LargeRegular._(
+      onBackground: TextStyle.lerp(a.onBackground, b?.onBackground, t)!,
+      onPrimary: TextStyle.lerp(a.onPrimary, b?.onPrimary, t)!,
+    );
+  }
 }

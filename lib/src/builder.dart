@@ -30,10 +30,11 @@ class FontsGenerator extends GeneratorForAnnotation<SoundFonts> {
 
     final StringBuffer buffer = StringBuffer();
 
-    buffer.writeln('class ${prefix}Fonts {');
+    final String className = '${prefix}Fonts';
+    buffer.writeln('class $className {');
 
     // Constructor.
-    buffer.writeln('${prefix}Fonts({');
+    buffer.writeln('$className({');
     buffer.writeln('required TextStyle style,');
     for (var size in schema.keys) {
       buffer.writeln('required double $size,');
@@ -68,17 +69,27 @@ class FontsGenerator extends GeneratorForAnnotation<SoundFonts> {
     }
     buffer.writeln('');
 
+    // Private constructor for `lerp`ing.
+    buffer.writeln('$className._({');
+    for (var size in schema.keys) {
+      buffer.writeln('required this.$size,');
+    }
+    buffer.writeln('});');
+    buffer.writeln('');
+
     // Values.
     for (var size in schema.entries) {
       buffer.writeln('final $prefix${size.key.capitalize} ${size.key};');
     }
 
+    // Sizes getter.
     buffer.writeln('');
     buffer.writeln('/// Returns the sizes generated.');
     buffer.writeln(
       'List<dynamic> get sizes => [${schema.keys.join(', ')}];',
     );
 
+    // Styles getter.
     if (styles) {
       buffer.writeln('');
       buffer.writeln('/// Returns the [TextStyle]s generated.');
@@ -86,6 +97,23 @@ class FontsGenerator extends GeneratorForAnnotation<SoundFonts> {
         'List<TextStyle> get styles => [${schema.keys.map((e) => '...$e.styles').join(', ')}];',
       );
     }
+
+    // Lerp.
+    buffer.writeln('');
+    buffer.writeln(
+      '/// Linearly interpolates the provided objects based on the given [t] value.',
+    );
+    buffer.writeln(
+      'static $className lerp($className a, $className? b, double t) {',
+    );
+    buffer.writeln('return $className._(');
+    for (var size in schema.keys) {
+      buffer.writeln(
+        '$size: ${size.capitalize}.lerp(a.$size, b?.$size, t),',
+      );
+    }
+    buffer.writeln(');');
+    buffer.writeln('}');
 
     buffer.writeln('}');
 
@@ -125,6 +153,14 @@ class FontsGenerator extends GeneratorForAnnotation<SoundFonts> {
       }
       buffer.writeln('');
 
+      // Private constructor for `lerp`ing.
+      buffer.writeln('$className._({');
+      for (var weight in size.value.keys) {
+        buffer.writeln('required this.$weight,');
+      }
+      buffer.writeln('});');
+      buffer.writeln('');
+
       // Fields.
       for (var weight in size.value.entries) {
         buffer.writeln(
@@ -132,12 +168,14 @@ class FontsGenerator extends GeneratorForAnnotation<SoundFonts> {
         );
       }
 
+      // Weights getter.
       buffer.writeln('');
       buffer.writeln('/// Returns the weights generated.');
       buffer.writeln(
         'List<dynamic> get weights => [${size.value.keys.join(', ')}];',
       );
 
+      // Styles getter.
       if (styles) {
         buffer.writeln('');
         buffer.writeln('/// Returns the [TextStyle]s generated.');
@@ -145,6 +183,23 @@ class FontsGenerator extends GeneratorForAnnotation<SoundFonts> {
           'List<TextStyle> get styles => [${size.value.keys.map((e) => '...$e.styles').join(', ')}];',
         );
       }
+
+      // Lerp.
+      buffer.writeln('');
+      buffer.writeln(
+        '/// Linearly interpolates the provided objects based on the given [t] value.',
+      );
+      buffer.writeln(
+        'static $className lerp($className a, $className? b, double t) {',
+      );
+      buffer.writeln('return $className._(');
+      for (var weight in size.value.keys) {
+        buffer.writeln(
+          '$weight: $className${weight.capitalize}.lerp(a.$weight, b?.$weight, t),',
+        );
+      }
+      buffer.writeln(');');
+      buffer.writeln('}');
 
       buffer.writeln('}');
       buffer.writeln();
@@ -174,7 +229,14 @@ class FontsGenerator extends GeneratorForAnnotation<SoundFonts> {
             buffer.writeln(',');
           }
         }
+        buffer.writeln('');
 
+        // Private constructor for `lerp`ing.
+        buffer.writeln('$className._({');
+        for (var color in colors) {
+          buffer.writeln('required this.$color,');
+        }
+        buffer.writeln('});');
         buffer.writeln('');
 
         // Fields.
@@ -182,12 +244,28 @@ class FontsGenerator extends GeneratorForAnnotation<SoundFonts> {
           buffer.writeln('final TextStyle $color;');
         }
 
+        // Styles getter.
         if (styles) {
           buffer.writeln('');
           buffer.writeln('/// Returns the [TextStyle]s defined in this class.');
           buffer
               .writeln('List<TextStyle> get styles => [${colors.join(', ')}];');
         }
+
+        // Lerp.
+        buffer.writeln('');
+        buffer.writeln(
+          '/// Linearly interpolates the provided objects based on the given [t] value.',
+        );
+        buffer.writeln(
+          'static $className lerp($className a, $className? b, double t) {',
+        );
+        buffer.writeln('return $className._(');
+        for (var color in colors) {
+          buffer.writeln('$color: TextStyle.lerp(a.$color, b?.$color, t)!,');
+        }
+        buffer.writeln(');');
+        buffer.writeln('}');
 
         buffer.writeln('}');
         buffer.writeln();
