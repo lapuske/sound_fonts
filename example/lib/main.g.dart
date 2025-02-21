@@ -3,6 +3,42 @@
 part of 'main.dart';
 
 // **************************************************************************
+// ColorsGenerator
+// **************************************************************************
+
+class Palette {
+  Palette({
+    required this.onBackground,
+    required this.primary,
+    required this.secondary,
+    Color? secondary10,
+    Color? secondary50,
+  })  : secondary10 = secondary10 ?? secondary.withValues(alpha: 0.1),
+        secondary50 = secondary50 ?? secondary.withValues(alpha: 0.5);
+
+  final Color onBackground;
+  final Color primary;
+  final Color secondary;
+  final Color secondary10;
+  final Color secondary50;
+
+  /// Linearly interpolates the provided objects based on the given [t] value.
+  static Palette lerp(Palette a, Palette? b, double t) {
+    if (b is! Palette) {
+      return a;
+    }
+
+    return Palette(
+      onBackground: Color.lerp(a.onBackground, b.onBackground, t)!,
+      primary: Color.lerp(a.primary, b.primary, t)!,
+      secondary: Color.lerp(a.secondary, b.secondary, t)!,
+      secondary10: Color.lerp(a.secondary10, b.secondary10, t)!,
+      secondary50: Color.lerp(a.secondary50, b.secondary50, t)!,
+    );
+  }
+}
+
+// **************************************************************************
 // FontsGenerator
 // **************************************************************************
 

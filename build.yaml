@@ -1,8 +1,15 @@
 builders:
-  sound_fonts:
-    import: "package:sound_fonts/src/builder.dart"
+  sound_fonts|fonts_generator:
+    import: "package:sound_fonts/src/fonts_builder.dart"
     builder_factories: ["builder"]
     build_extensions: {".dart": ["fonts.g.part"]}
+    auto_apply: dependents
+    build_to: cache
+    applies_builders: ["source_gen|combining_builder"]
+  sound_fonts|colors_generator:
+    import: "package:sound_fonts/src/colors_builder.dart"
+    builder_factories: ["builder"]
+    build_extensions: {".dart": ["colors.g.part"]}
     auto_apply: dependents
     build_to: cache
     applies_builders: ["source_gen|combining_builder"]

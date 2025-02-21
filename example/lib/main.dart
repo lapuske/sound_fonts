@@ -14,3 +14,14 @@ part 'main.g.dart';
   },
 })
 class AnnotatedFonts {}
+
+@SoundColors(
+  {
+    'onBackground',
+    'primary',
+    'secondary',
+    'secondary10',
+    'secondary50',
+  },
+)
+class AnnotatedColors {}
