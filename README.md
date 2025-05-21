@@ -148,7 +148,7 @@ import 'package:sound_fonts/sound_fonts.dart';
 
 part 'main.g.dart';
 
-@SoundColors(['onBackground', 'primary', 'secondary', 'secondary50'])
+@SoundColors({'onBackground', 'primary', 'secondary', 'secondary50'})
 class AnnotatedColors {}
 ```
 
