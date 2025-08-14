@@ -13,8 +13,8 @@ class Palette {
     required this.secondary,
     Color? secondary10,
     Color? secondary50,
-  })  : secondary10 = secondary10 ?? secondary.withValues(alpha: 0.1),
-        secondary50 = secondary50 ?? secondary.withValues(alpha: 0.5);
+  }) : secondary10 = secondary10 ?? secondary.withValues(alpha: 0.1),
+       secondary50 = secondary50 ?? secondary.withValues(alpha: 0.5);
 
   final Color onBackground;
   final Color primary;
@@ -53,27 +53,24 @@ class Fonts {
     required Color primary,
     required Color secondary,
     required Color onPrimary,
-  })  : largest = Largest(
-          style: style.copyWith(fontSize: largest),
-          bold: bold,
-          regular: regular,
-          onBackground: onBackground,
-          primary: primary,
-        ),
-        large = Large(
-          style: style.copyWith(fontSize: large),
-          bold: bold,
-          regular: regular,
-          onBackground: onBackground,
-          primary: primary,
-          secondary: secondary,
-          onPrimary: onPrimary,
-        );
+  }) : largest = Largest(
+         style: style.copyWith(fontSize: largest),
+         bold: bold,
+         regular: regular,
+         onBackground: onBackground,
+         primary: primary,
+       ),
+       large = Large(
+         style: style.copyWith(fontSize: large),
+         bold: bold,
+         regular: regular,
+         onBackground: onBackground,
+         primary: primary,
+         secondary: secondary,
+         onPrimary: onPrimary,
+       );
 
-  Fonts._({
-    required this.largest,
-    required this.large,
-  });
+  Fonts._({required this.largest, required this.large});
 
   final Largest largest;
   final Large large;
@@ -87,8 +84,10 @@ class Fonts {
   /// Returns the [Map] of [TextStyle]s generated.
   ///
   /// Represents the [SoundFonts.schema].
-  Map<String, Map<String, Map<String, TextStyle>>> get schema =>
-      {'largest': largest.schema, 'large': large.schema};
+  Map<String, Map<String, Map<String, TextStyle>>> get schema => {
+    'largest': largest.schema,
+    'large': large.schema,
+  };
 
   /// Linearly interpolates the provided objects based on the given [t] value.
   static Fonts lerp(Fonts a, Fonts? b, double t) {
@@ -106,21 +105,18 @@ class Largest {
     required FontWeight regular,
     required Color onBackground,
     required Color primary,
-  })  : bold = LargestBold(
-          style: style.copyWith(fontWeight: bold),
-          onBackground: onBackground,
-          primary: primary,
-        ),
-        regular = LargestRegular(
-          style: style.copyWith(fontWeight: regular),
-          onBackground: onBackground,
-          primary: primary,
-        );
+  }) : bold = LargestBold(
+         style: style.copyWith(fontWeight: bold),
+         onBackground: onBackground,
+         primary: primary,
+       ),
+       regular = LargestRegular(
+         style: style.copyWith(fontWeight: regular),
+         onBackground: onBackground,
+         primary: primary,
+       );
 
-  Largest._({
-    required this.bold,
-    required this.regular,
-  });
+  Largest._({required this.bold, required this.regular});
 
   final LargestBold bold;
   final LargestRegular regular;
@@ -132,8 +128,10 @@ class Largest {
   List<TextStyle> get styles => [...bold.styles, ...regular.styles];
 
   /// Returns the [Map] of [TextStyle]s generated.
-  Map<String, Map<String, TextStyle>> get schema =>
-      {'bold': bold.schema, 'regular': regular.schema};
+  Map<String, Map<String, TextStyle>> get schema => {
+    'bold': bold.schema,
+    'regular': regular.schema,
+  };
 
   /// Linearly interpolates the provided objects based on the given [t] value.
   static Largest lerp(Largest a, Largest? b, double t) {
@@ -149,13 +147,10 @@ class LargestBold {
     required TextStyle style,
     required Color onBackground,
     required Color primary,
-  })  : onBackground = style.copyWith(color: onBackground),
-        primary = style.copyWith(color: primary);
+  }) : onBackground = style.copyWith(color: onBackground),
+       primary = style.copyWith(color: primary);
 
-  LargestBold._({
-    required this.onBackground,
-    required this.primary,
-  });
+  LargestBold._({required this.onBackground, required this.primary});
 
   final TextStyle onBackground;
   final TextStyle primary;
@@ -164,8 +159,10 @@ class LargestBold {
   List<TextStyle> get styles => [onBackground, primary];
 
   /// Returns the [Map] of [TextStyle]s defined in this class.
-  Map<String, TextStyle> get schema =>
-      {'onBackground': onBackground, 'primary': primary};
+  Map<String, TextStyle> get schema => {
+    'onBackground': onBackground,
+    'primary': primary,
+  };
 
   /// Linearly interpolates the provided objects based on the given [t] value.
   static LargestBold lerp(LargestBold a, LargestBold? b, double t) {
@@ -181,13 +178,10 @@ class LargestRegular {
     required TextStyle style,
     required Color onBackground,
     required Color primary,
-  })  : onBackground = style.copyWith(color: onBackground),
-        primary = style.copyWith(color: primary);
+  }) : onBackground = style.copyWith(color: onBackground),
+       primary = style.copyWith(color: primary);
 
-  LargestRegular._({
-    required this.onBackground,
-    required this.primary,
-  });
+  LargestRegular._({required this.onBackground, required this.primary});
 
   final TextStyle onBackground;
   final TextStyle primary;
@@ -196,8 +190,10 @@ class LargestRegular {
   List<TextStyle> get styles => [onBackground, primary];
 
   /// Returns the [Map] of [TextStyle]s defined in this class.
-  Map<String, TextStyle> get schema =>
-      {'onBackground': onBackground, 'primary': primary};
+  Map<String, TextStyle> get schema => {
+    'onBackground': onBackground,
+    'primary': primary,
+  };
 
   /// Linearly interpolates the provided objects based on the given [t] value.
   static LargestRegular lerp(LargestRegular a, LargestRegular? b, double t) {
@@ -217,22 +213,19 @@ class Large {
     required Color primary,
     required Color secondary,
     required Color onPrimary,
-  })  : bold = LargeBold(
-          style: style.copyWith(fontWeight: bold),
-          onBackground: onBackground,
-          primary: primary,
-          secondary: secondary,
-        ),
-        regular = LargeRegular(
-          style: style.copyWith(fontWeight: regular),
-          onBackground: onBackground,
-          onPrimary: onPrimary,
-        );
+  }) : bold = LargeBold(
+         style: style.copyWith(fontWeight: bold),
+         onBackground: onBackground,
+         primary: primary,
+         secondary: secondary,
+       ),
+       regular = LargeRegular(
+         style: style.copyWith(fontWeight: regular),
+         onBackground: onBackground,
+         onPrimary: onPrimary,
+       );
 
-  Large._({
-    required this.bold,
-    required this.regular,
-  });
+  Large._({required this.bold, required this.regular});
 
   final LargeBold bold;
   final LargeRegular regular;
@@ -244,8 +237,10 @@ class Large {
   List<TextStyle> get styles => [...bold.styles, ...regular.styles];
 
   /// Returns the [Map] of [TextStyle]s generated.
-  Map<String, Map<String, TextStyle>> get schema =>
-      {'bold': bold.schema, 'regular': regular.schema};
+  Map<String, Map<String, TextStyle>> get schema => {
+    'bold': bold.schema,
+    'regular': regular.schema,
+  };
 
   /// Linearly interpolates the provided objects based on the given [t] value.
   static Large lerp(Large a, Large? b, double t) {
@@ -262,9 +257,9 @@ class LargeBold {
     required Color onBackground,
     required Color primary,
     required Color secondary,
-  })  : onBackground = style.copyWith(color: onBackground),
-        primary = style.copyWith(color: primary),
-        secondary = style.copyWith(color: secondary);
+  }) : onBackground = style.copyWith(color: onBackground),
+       primary = style.copyWith(color: primary),
+       secondary = style.copyWith(color: secondary);
 
   LargeBold._({
     required this.onBackground,
@@ -281,10 +276,10 @@ class LargeBold {
 
   /// Returns the [Map] of [TextStyle]s defined in this class.
   Map<String, TextStyle> get schema => {
-        'onBackground': onBackground,
-        'primary': primary,
-        'secondary': secondary
-      };
+    'onBackground': onBackground,
+    'primary': primary,
+    'secondary': secondary,
+  };
 
   /// Linearly interpolates the provided objects based on the given [t] value.
   static LargeBold lerp(LargeBold a, LargeBold? b, double t) {
@@ -301,13 +296,10 @@ class LargeRegular {
     required TextStyle style,
     required Color onBackground,
     required Color onPrimary,
-  })  : onBackground = style.copyWith(color: onBackground),
-        onPrimary = style.copyWith(color: onPrimary);
+  }) : onBackground = style.copyWith(color: onBackground),
+       onPrimary = style.copyWith(color: onPrimary);
 
-  LargeRegular._({
-    required this.onBackground,
-    required this.onPrimary,
-  });
+  LargeRegular._({required this.onBackground, required this.onPrimary});
 
   final TextStyle onBackground;
   final TextStyle onPrimary;
@@ -316,8 +308,10 @@ class LargeRegular {
   List<TextStyle> get styles => [onBackground, onPrimary];
 
   /// Returns the [Map] of [TextStyle]s defined in this class.
-  Map<String, TextStyle> get schema =>
-      {'onBackground': onBackground, 'onPrimary': onPrimary};
+  Map<String, TextStyle> get schema => {
+    'onBackground': onBackground,
+    'onPrimary': onPrimary,
+  };
 
   /// Linearly interpolates the provided objects based on the given [t] value.
   static LargeRegular lerp(LargeRegular a, LargeRegular? b, double t) {
