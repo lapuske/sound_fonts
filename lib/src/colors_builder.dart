@@ -1,4 +1,5 @@
-import 'package:analyzer/dart/element/element.dart';
+// ignore: deprecated_member_use, until `source_gen` updates to 4.0.0?
+import 'package:analyzer/dart/element/element2.dart';
 import 'package:build/build.dart';
 import 'package:source_gen/source_gen.dart';
 
@@ -11,7 +12,8 @@ Builder builder(BuilderOptions options) {
 class ColorsGenerator extends GeneratorForAnnotation<SoundColors> {
   @override
   String generateForAnnotatedElement(
-    Element element,
+    // ignore: deprecated_member_use, until `source_gen` updates to 4.0.0?
+    Element2 element,
     ConstantReader annotation,
     BuildStep buildStep,
   ) {
