@@ -1,5 +1,4 @@
-// ignore: deprecated_member_use, until `source_gen` updates to 4.0.0?
-import 'package:analyzer/dart/element/element2.dart';
+import 'package:analyzer/dart/element/element.dart';
 import 'package:build/build.dart';
 import 'package:source_gen/source_gen.dart';
 
@@ -12,8 +11,7 @@ Builder builder(BuilderOptions options) {
 class FontsGenerator extends GeneratorForAnnotation<SoundFonts> {
   @override
   String generateForAnnotatedElement(
-    // ignore: deprecated_member_use, until `source_gen` updates to 4.0.0?
-    Element2 element,
+    Element element,
     ConstantReader annotation,
     BuildStep buildStep,
   ) {
